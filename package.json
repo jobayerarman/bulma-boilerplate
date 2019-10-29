@@ -17,8 +17,8 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js  --colors",
-    "start": "webpack-dev-server --open --config webpack/webpack.config.dev.js --colors",
-    "run": "webpack --config webpack/webpack.config.dev.js --colors"
+    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js --colors",
+    "start": "webpack --config webpack/webpack.config.dev.js --colors"
   },
   "keywords": [
     "webpack",
