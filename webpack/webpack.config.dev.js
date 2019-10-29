@@ -1,13 +1,18 @@
 const Path = require('path');
 const Webpack = require('webpack');
 const merge = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
+  devtool: 'cheap-eval-source-map',
   plugins: [
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/style.css'
     })
   ],
   module: {
@@ -20,6 +25,19 @@ module.exports = merge(common, {
         options: {
           emitWarning: true,
         }
+      },
+      {
+        test: /\.s?css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader' },
+          { loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              // options...
+            }
+          }
+        ]
       }
     ]
   }
